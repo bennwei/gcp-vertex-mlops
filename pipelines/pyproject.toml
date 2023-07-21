@@ -1,45 +1,23 @@
-[project]
-name = "turbo-template"
-authors = [
-    {name = "Example User", email = "user@example.com"},
-]
-description = "Turbo Template"
+[tool.poetry]
+name = "gcp-vertex-mlops"
+version = "0.1.0"
+description = "A reference implementation of [Vertex Pipelines](https://cloud.google.com/vertex-ai/docs/pipelines/) for creating a production-ready MLOps solution on Google Cloud."
+authors = ["Eric Liao <ericliaowei@gmail.com>"]
 readme = "README.md"
-classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Intended Audience :: Developers",
-    "Programming Language :: Python :: 3.7",
-]
-requires-python = ">=3.7"
-dynamic = ["version"]
-dependencies = [
-    "kfp == 1.8.21",
-]
+packages = [{include = "gcp_vertex_mlops"}]
 
-[project.optional-dependencies]
-tests = [
-    "google-cloud-bigquery == 2.30.0",
-    "pytest >= 7.3.1,<8.0.0",
-]
+[tool.poetry.dependencies]
+python = "3.7.12"
+kfp = "1.8.21"
+google-cloud-aiplatform = "1.24.1"
+google-cloud-pipeline-components = "1.0.42"
+Jinja2 = "^3.0.1"
+pyyaml = "5.3.1"
+
+[tool.poetry.group.dev.dependencies]
+google-cloud-bigquery = "2.30.0"
+pytest = "^7.3.1"
 
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta:__legacy__"
-
-[tool.flake8]
-max-line-length = 88
-per-file-ignores = [
-    "E203",
-    "F841"
-]
-ignore = [
-    "E203",
-    "F841",
-]
-
-[tool.pytest.ini_options]
-pythonpath = [
-  "src"
-]
-testpaths = "tests"
-junit_family = "xunit2"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
